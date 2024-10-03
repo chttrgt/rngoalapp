@@ -22,10 +22,7 @@ const GoalInput = ({
     const timer = setTimeout(() => {
       textRef.current?.focus();
     }, 100);
-
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -41,7 +38,6 @@ const GoalInput = ({
           style={styles.textInput}
           value={enteredGoalText}
           onChangeText={goalInputHandler}
-          autoFocus={true}
         />
         <View style={styles.modalButtonsContainer}>
           <View style={styles.modalButtons}>
