@@ -6,22 +6,28 @@ import {
   Platform,
   TextInput,
   View,
+  Modal,
 } from "react-native";
 
-const GoalInput = () => {
+const GoalInput = ({ showModal, closeModal }) => {
   return (
-    <View style={styles.inputContainer}>
-      <Image
-        source={require("../assets/images/goal.png")}
-        style={styles.image}
-      />
-      <TextInput placeholder="Your course goal!" style={styles.textInput} />
-      <View style={styles.modalButtonsContainer}>
-        <View style={styles.modalButtons}>
-          <Button title="Add Goal" />
+    <Modal visible={showModal} animationType="slide">
+      <View style={styles.inputContainer}>
+        <Image
+          source={require("../assets/images/goal.png")}
+          style={styles.image}
+        />
+        <TextInput placeholder="Your course goal!" style={styles.textInput} />
+        <View style={styles.modalButtonsContainer}>
+          <View style={styles.modalButtons}>
+            <Button title="cancel" color="#f31282" onPress={closeModal} />
+          </View>
+          <View style={styles.modalButtons}>
+            <Button title="Add Goal" color="#9364d1" />
+          </View>
         </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 

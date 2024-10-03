@@ -6,13 +6,33 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  //#region Modal Settings
+  function showAddGoalModal() {
+    setModalIsVisible(true);
+  }
+
+  function closeAddGoalModal() {
+    setModalIsVisible(false);
+  }
+  //#endregion
 
   return (
     <>
       <StatusBar style="light" />
       <View style={styles.container}>
-        <Button title="Add New Goal" color="#a98dee" />
-        <GoalInput />
+        <Button
+          title="Add New Goal"
+          color="#a98dee"
+          onPress={showAddGoalModal}
+        />
+        {modalIsVisible && (
+          <GoalInput
+            showModal={modalIsVisible}
+            closeModal={closeAddGoalModal}
+          />
+        )}
       </View>
     </>
   );
