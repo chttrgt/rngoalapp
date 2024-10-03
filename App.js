@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
 import GoalInput from "./components/GoalInput";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -18,6 +19,26 @@ export default function App() {
   }
   //#endregion
 
+  //#region TextInput Method
+  function goalInputHandler(enteredText) {
+    setEnteredGoalText(enteredText);
+  }
+  //#endregion
+
+  //#region Add New Goal
+  function addNewGoalHandler() {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      {
+        id: Math.random().toString(),
+        title: enteredGoalText,
+      },
+    ]);
+    setEnteredGoalText("");
+    closeAddGoalModal();
+  }
+  //#endregion
+
   return (
     <>
       <StatusBar style="light" />
@@ -31,8 +52,12 @@ export default function App() {
           <GoalInput
             showModal={modalIsVisible}
             closeModal={closeAddGoalModal}
+            enteredGoalText={enteredGoalText}
+            goalInputHandler={goalInputHandler}
+            newGoal={addNewGoalHandler}
           />
         )}
+        <GoalItem goalsData={courseGoals} setGoalsData={setCourseGoals} />
       </View>
     </>
   );

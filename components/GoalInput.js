@@ -9,7 +9,13 @@ import {
   Modal,
 } from "react-native";
 
-const GoalInput = ({ showModal, closeModal }) => {
+const GoalInput = ({
+  showModal,
+  closeModal,
+  goalInputHandler,
+  enteredGoalText,
+  newGoal,
+}) => {
   return (
     <Modal visible={showModal} animationType="slide">
       <View style={styles.inputContainer}>
@@ -17,13 +23,18 @@ const GoalInput = ({ showModal, closeModal }) => {
           source={require("../assets/images/goal.png")}
           style={styles.image}
         />
-        <TextInput placeholder="Your course goal!" style={styles.textInput} />
+        <TextInput
+          placeholder="Your course goal!"
+          style={styles.textInput}
+          value={enteredGoalText}
+          onChangeText={goalInputHandler}
+        />
         <View style={styles.modalButtonsContainer}>
           <View style={styles.modalButtons}>
             <Button title="cancel" color="#f31282" onPress={closeModal} />
           </View>
           <View style={styles.modalButtons}>
-            <Button title="Add Goal" color="#9364d1" />
+            <Button title="Add Goal" color="#9364d1" onPress={newGoal} />
           </View>
         </View>
       </View>
