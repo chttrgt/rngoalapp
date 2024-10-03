@@ -16,6 +16,7 @@ export default function App() {
 
   function closeAddGoalModal() {
     setModalIsVisible(false);
+    setEnteredGoalText("");
   }
   //#endregion
 

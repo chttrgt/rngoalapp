@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import {
   Button,
   Image,
@@ -16,6 +16,18 @@ const GoalInput = ({
   enteredGoalText,
   newGoal,
 }) => {
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      textRef.current?.focus();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <Modal visible={showModal} animationType="slide">
       <View style={styles.inputContainer}>
@@ -24,10 +36,12 @@ const GoalInput = ({
           style={styles.image}
         />
         <TextInput
+          ref={textRef}
           placeholder="Your course goal!"
           style={styles.textInput}
           value={enteredGoalText}
           onChangeText={goalInputHandler}
+          autoFocus={true}
         />
         <View style={styles.modalButtonsContainer}>
           <View style={styles.modalButtons}>
