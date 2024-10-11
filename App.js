@@ -28,6 +28,9 @@ export default function App() {
 
   //#region Add New Goal
   function addNewGoalHandler() {
+    if (!enteredGoalText) {
+      return null;
+    }
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       {
