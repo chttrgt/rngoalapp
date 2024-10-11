@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
   Modal,
+  KeyboardAvoidingView,
 } from "react-native";
 
 const GoalInput = ({
@@ -27,7 +28,10 @@ const GoalInput = ({
 
   return (
     <Modal visible={showModal} animationType="slide">
-      <View style={styles.inputContainer}>
+      <KeyboardAvoidingView
+        style={styles.inputContainer}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <Image
           source={require("../assets/images/goal.png")}
           style={styles.image}
@@ -47,7 +51,7 @@ const GoalInput = ({
             <Button title="Add Goal" color="#9364d1" onPress={newGoal} />
           </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
